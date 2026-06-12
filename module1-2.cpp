@@ -7,7 +7,7 @@ class person {
     string cnic;
     string contact;
 public:
-    person(string name,string age,int cnic,string contact){
+    person(string name,int age,string cnic,string contact){
         this->name=name;
         this->age=age;
         this->cnic=cnic;
@@ -21,7 +21,7 @@ class student:public person{
     int gpa;
     float semester;
 public:
-    student(string name,string age,int cnic,string contact,string rollno,int gpa,float semester):person(name,age,cnic,contact){
+    student(string name,int age,string cnic,string contact,string rollno,int gpa,float semester):person(name,age,cnic,contact){
         this->rollno=rollno;
         this->gpa=gpa;
         this->semester=semester;
@@ -54,7 +54,7 @@ class Faculty:public person{
     string department;
     string designation;
 public:
-    Faculty(string name,string age,int cnic,string contact,string empid,string department,string designation):person(name,age,cnic,contact){
+    Faculty(string name,int age,string cnic,string contact,string empid,string department,string designation):person(name,age,cnic,contact){
         this->empid=empid;
         this->department=department;
         this->designation=designation;
@@ -75,9 +75,14 @@ class Staff:public person{
     string role;
     double salary;
     public:
-    staff(string name,string age,int cnic,string contact,string empid,string department,string designation):person(name,age,cnic,contact)
+    Staff(string name,int age,string cnic,string contact,string staffid,double salary, string role):person(name,age,cnic,contact){
+        this->staffid;
+        this->role;
+        this->salary;
+    }
+};
 int main(){
-
-
+student S1("Akmal",20,"16202-5709996-1","03300000","25-cs-018",3.4,2);
+S1.displayinfo();
  return 0;   
 }
