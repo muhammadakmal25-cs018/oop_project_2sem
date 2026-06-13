@@ -109,20 +109,3 @@ public:
         grade=g;
     }
 };
-int main(){
-    faculty f1("F001","Dr. ali");
-    course c1("CS101","Intro to CS",3,&f1,2);
-    student s1("S001","Ahmed");
-    student s2("S002","Bilal");
-    student s3("S003","Awais");
-    try{
-        c1.enroll(&s1);
-        c1.enroll(&s2);
-        c1.enroll(&s3); // This will throw an exception
-    }catch(const capacityexceeded& e){
-        cout<<e.what()<<endl;
-        c1.addtowaitlist(&s3);
-    }
-    cout<<c1;
-    return 0;
-}
