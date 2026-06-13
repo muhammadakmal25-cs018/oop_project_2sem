@@ -1,4 +1,6 @@
 #include<iostream>
+#include<string>
+#include <vector>
 using namespace std;
 class person {
     protected:
@@ -18,14 +20,18 @@ public:
 };
 class student:public person{
     string rollno;
-    int gpa;
-    float semester;
+    float gpa;
+    int semester;
+    vector<string> enroll_course;
 public:
-    student(string name,int age,string cnic,string contact,string rollno,int gpa,float semester):person(name,age,cnic,contact){
+    student(string name,int age,string cnic,string contact,string rollno,float gpa,int semester, const vector<string>& courses):person(name,age,cnic,contact){
         this->rollno=rollno;
         this->gpa=gpa;
         this->semester=semester;
+        this->enroll_course = courses;
+       
     }
+   
    void displayinfo() override{
         cout<<"-----------Student Information---------"<<endl;
         cout<<"Name: "<<name<<endl;
@@ -35,6 +41,10 @@ public:
         cout<<"Roll No: "<<rollno<<endl;
         cout<<"GPA: "<<gpa<<endl;
         cout<<"Semester: "<<semester<<endl;
+        cout<<"Enrolled Courses: "<<endl;
+        for(const auto& course : enroll_course){
+            cout<<"- "<<course<<endl;
+        }
     }
     char calgrade(){
         if(gpa>=3.5){   return 'A';
@@ -47,18 +57,22 @@ public:
         }
         else{   return 'F';
         }
-    }
+    
+}
 };
 class Faculty:public person{
     string empid;
     string department;
     string designation;
+    vector<string> assigned_courses;
 public:
-    Faculty(string name,int age,string cnic,string contact,string empid,string department,string designation):person(name,age,cnic,contact){
+    Faculty(string name,int age,string cnic,string contact,string empid,string department,string designation, const vector<string>& courses):person(name,age,cnic,contact){
         this->empid=empid;
         this->department=department;
         this->designation=designation;
+        this->assigned_courses = courses;
     }
+
     void displayinfo() override{
         cout<<"-----------Faculty Information---------"<<endl;
         cout<<"Name: "<<name<<endl;
@@ -68,21 +82,42 @@ public:
         cout<<"Employee ID: "<<empid<<endl;
         cout<<"Department: "<<department<<endl;
         cout<<"Designation: "<<designation<<endl;
+        cout<<"Assigned Courses: "<<endl;
+        for(const auto& course : assigned_courses){
+            cout<<"- "<<course<<endl;
+        }
     }
 };
 class Staff:public person{
     string staffid;
     string role;
-    double salary;
+    float salary;
     public:
-    Staff(string name,int age,string cnic,string contact,string staffid,double salary, string role):person(name,age,cnic,contact){
-        this->staffid;
-        this->role;
-        this->salary;
+    Staff(string name,int age,string cnic,string contact,string staffid,float salary, string role):person(name,age,cnic,contact){
+        this->staffid=staffid;
+        this->role=role;
+        this->salary=salary;
+    }
+void displayinfo() override{
+        cout<<"-----------Staff Information---------"<<endl;
+        cout<<"Name: "<<name<<endl;
+        cout<<"Age: "<<age<<endl;
+        cout<<"CNIC: "<<cnic<<endl;
+        cout<<"Contact: "<<contact<<endl;
+        cout<<"Staff ID: "<<staffid<<endl;
+        cout<<"Role: "<<role<<endl;
+        cout<<"Salary: "<<salary<<endl;
     }
 };
 int main(){
-student S1("Akmal",20,"16202-5709996-1","03300000","25-cs-018",3.4,2);
-S1.displayinfo();
- return 0;   
+student s1("Ali",20,"12345-6789012-3","03001234567","S123",3.8,4,{"Math","Physics","Chemistry"});
+Faculty f1("imran",45,"98765-4321098-7","03007654321","F456","Computer Science","Professor",{"Data Structures","Algorithms","Operating Systems"});
+Staff st1("Sara",30,"56789-0123456-8","03009876543","ST789",50000,"Administrator");
+s1.displayinfo();
+f1.displayinfo();
+st1.displayinfo();
+
+
+return 0;   
+
 }
