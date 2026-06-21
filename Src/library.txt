@@ -1,2 +1,0 @@
-Book,1,C++ Basics,Bjarne Stroustrup,2020,ISBN101,Programming,1
-Journal,2,AI Journal,John Smith,2024,ISSN202,5,2
